@@ -10,6 +10,7 @@ Salesforce 데이터 조회 서비스의 **공통 개발 규칙 및 운영 원�
 - Python 버전: **3.14**
 - 배포 환경: **Heroku**
 - Salesforce 연동: **simple-salesforce**
+- simple-salesforce library is included.
 - 목적:
   - Salesforce 데이터를 조회(Read-only)
   - 조회 결과를 가공하여 API 또는 배치 작업으로 제공
