@@ -4,5 +4,32 @@
         "password": "pricow12#$",
         "security_token": "jF7K8rF34eCHlY14j76n50Vv4",
         "domain": "login"
+    },
+    "etl_config": {
+        "mappings": [
+            {
+                "object": "Account",
+                "fields": [
+                    "AccountNumber",
+                    "Active__c",
+                    "BillingCity"
+                ]
+            },
+            {
+                "object": "Asset",
+                "fields": [
+                    "ContactId",
+                    "AssetServicedById",
+                    "AssetProvidedById",
+                    "AssetLevel"
+                ]
+            }
+        ],
+        "batch_size": 1000
+    },
+    "schedule_config": {
+        "frequency": "Daily",
+        "run_time": "09:00:00",
+        "is_active": false
     }
 }

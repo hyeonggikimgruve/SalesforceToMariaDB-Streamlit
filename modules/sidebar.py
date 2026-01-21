@@ -1,5 +1,5 @@
 import streamlit as st
-from .config_manager import load_config, save_config
+from .config_manager import load_config, save_app_config
 
 def render_sidebar():
     st.header("⚙️ Configuration")
@@ -24,16 +24,5 @@ def render_sidebar():
     
     # 설정 저장하기 (Mock -> Real Local)
     if st.button("Save Settings to File", type="primary"):
-        save_data = {
-            "sf_config": st.session_state['sf_config'],
-            "etl_config": st.session_state['etl_config'],
-            "schedule_config": {
-                # Time objects are not JSON serializable, convert to string
-                "frequency": st.session_state['schedule_config']['frequency'],
-                "run_time": st.session_state['schedule_config']['run_time'].strftime("%H:%M:%S"),
-                "is_active": st.session_state['schedule_config']['is_active']
-            }
-        }
-        # Note: We are saving password in plain text for this local prototype.
-        save_config(save_data)
+        save_app_config()
         st.success("Configuration saved to config.json!")

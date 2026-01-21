@@ -1,4 +1,5 @@
 import streamlit as st
+from .config_manager import save_app_config
 
 def render_schedule_tab():
     if not st.session_state['is_connected']:
@@ -27,6 +28,10 @@ def render_schedule_tab():
                 st.session_state['schedule_config']['run_time'] = run_time
             elif freq == "Cron Expression":
                 st.text_input("Cron Expression", value="0 9 * * *")
+            
+            if st.button("💾 Save Schedule", type="primary"):
+                save_app_config()
+                st.success("Schedule saved!")
                 
         with col_sch2:
             st.info(f"""
