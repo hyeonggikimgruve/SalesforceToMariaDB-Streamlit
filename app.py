@@ -6,6 +6,7 @@ from modules.extract_tab import render_extract_tab
 from modules.transform_tab import render_transform_tab
 from modules.load_tab import render_load_tab
 from modules.schedule_tab import render_schedule_tab
+from modules.mariadb_tab import render_mariadb_tab
 
 # 페이지 기본 설정
 st.set_page_config(
@@ -36,7 +37,7 @@ st.title("☁️ Salesforce Data ETL Manager")
 st.markdown("Salesforce 데이터를 추출하고 스케줄링을 관리하는 대시보드입니다.")
 
 # 탭 구성
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["🔐 Connection", "📊 Extract Settings", "🛠️ Transform", "🚀 Load", "⏰ Schedule"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["🔐 Connection", "📊 Extract Settings", "🛠️ Transform", "🚀 Load", "⏰ Schedule", "🗄️ MariaDB"])
 
 # --- TAB 1: Salesforce 연결 설정 ---
 with tab1:
@@ -57,3 +58,7 @@ with tab4:
 # --- TAB 5: 스케줄 설정 ---
 with tab5:
     render_schedule_tab()
+
+# --- TAB 6: MariaDB 연결 설정 ---
+with tab6:
+    render_mariadb_tab()

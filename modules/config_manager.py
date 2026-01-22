@@ -26,6 +26,7 @@ def save_app_config():
     """Helper to save all relevant session state to config.json."""
     save_data = {
         "sf_config": st.session_state.get('sf_config', {}),
+        "mariadb_config": st.session_state.get('mariadb_config', {}),
         "etl_config": st.session_state.get('etl_config', {}),
         "schedule_config": {
             "frequency": st.session_state['schedule_config']['frequency'],

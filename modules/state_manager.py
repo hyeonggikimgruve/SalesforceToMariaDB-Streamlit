@@ -21,6 +21,18 @@ def init_session_state():
             }
             st.session_state['auto_login_attempted'] = True # No config, so consider it "attempted" (skipped)
 
+    if 'mariadb_config' not in st.session_state:
+        if loaded_config and 'mariadb_config' in loaded_config:
+            st.session_state['mariadb_config'] = loaded_config['mariadb_config']
+        else:
+            st.session_state['mariadb_config'] = {
+                'host': '',
+                'port': 3306,
+                'user': '',
+                'password': '',
+                'database': ''
+            }
+
     if 'etl_config' not in st.session_state:
         if loaded_config and 'etl_config' in loaded_config:
             config = loaded_config['etl_config']

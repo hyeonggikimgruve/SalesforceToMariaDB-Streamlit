@@ -32,3 +32,6 @@ Salesforce 데이터 조회 서비스의 **공통 개발 규칙 및 운영 원�
 
 ```python
 TEMP_DIR = "/tmp"
+
+### 코딩 완료하면 git commit 하고 heroku push까지 완료 할 것.
+#  
