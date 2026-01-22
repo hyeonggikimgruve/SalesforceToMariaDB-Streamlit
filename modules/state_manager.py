@@ -37,10 +37,18 @@ def init_session_state():
                 config.pop('selected_object', None)
                 config.pop('selected_fields', None)
             
+            if 'transformations' not in config:
+                config['transformations'] = {}
+
+            if 'load_order' not in config:
+                config['load_order'] = []
+                
             st.session_state['etl_config'] = config
         else:
             st.session_state['etl_config'] = {
                 'mappings': [],
+                'transformations': {},
+                'load_order': [],
                 'batch_size': 1000
             }
 

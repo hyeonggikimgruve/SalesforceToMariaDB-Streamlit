@@ -10,20 +10,54 @@
             {
                 "object": "Account",
                 "fields": [
-                    "AccountNumber",
                     "Active__c",
-                    "BillingCity"
+                    "AnnualRevenue",
+                    "BillingAddress",
+                    "BillingCity",
+                    "BillingCountry"
                 ]
             },
             {
-                "object": "Asset",
+                "object": "Case",
                 "fields": [
+                    "Comments",
+                    "ContactEmail",
+                    "ContactFax",
                     "ContactId",
-                    "AssetServicedById",
-                    "AssetProvidedById",
-                    "AssetLevel"
+                    "ContactMobile"
                 ]
             }
+        ],
+        "transformations": {
+            "Account": {
+                "target_table": "stg_sf_account",
+                "field_map": {
+                    "Active__c": "id",
+                    "AnnualRevenue": "sf_id",
+                    "BillingAddress": null,
+                    "BillingCity": null,
+                    "BillingCountry": null
+                },
+                "field_configs": {},
+                "load_strategy": "BULK LOAD / COPY",
+                "match_key": "id"
+            },
+            "Case": {
+                "target_table": "stg_sf_contact",
+                "field_map": {
+                    "Comments": "id",
+                    "ContactEmail": "first_name",
+                    "ContactFax": null,
+                    "ContactId": null,
+                    "ContactMobile": null
+                },
+                "field_configs": {},
+                "load_strategy": "INSERT"
+            }
+        },
+        "load_order": [
+            "Case",
+            "Account"
         ],
         "batch_size": 1000
     },
