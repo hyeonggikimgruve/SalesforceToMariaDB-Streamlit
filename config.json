@@ -1,0 +1,69 @@
+{
+    "sf_config": {
+        "username": "khk@cunning-impala-rjafod.com",
+        "password": "",
+        "security_token": "",
+        "domain": "login"
+    },
+    "etl_config": {
+        "mappings": [
+            {
+                "object": "Account",
+                "fields": [
+                    "Active__c",
+                    "AnnualRevenue",
+                    "BillingAddress",
+                    "BillingCity",
+                    "BillingCountry"
+                ]
+            },
+            {
+                "object": "Case",
+                "fields": [
+                    "Comments",
+                    "ContactEmail",
+                    "ContactFax",
+                    "ContactId",
+                    "ContactMobile"
+                ]
+            }
+        ],
+        "transformations": {
+            "Account": {
+                "target_table": "stg_sf_account",
+                "field_map": {
+                    "Active__c": "id",
+                    "AnnualRevenue": "sf_id",
+                    "BillingAddress": null,
+                    "BillingCity": null,
+                    "BillingCountry": null
+                },
+                "field_configs": {},
+                "load_strategy": "BULK LOAD / COPY",
+                "match_key": "id"
+            },
+            "Case": {
+                "target_table": "stg_sf_contact",
+                "field_map": {
+                    "Comments": "id",
+                    "ContactEmail": "first_name",
+                    "ContactFax": null,
+                    "ContactId": null,
+                    "ContactMobile": null
+                },
+                "field_configs": {},
+                "load_strategy": "INSERT"
+            }
+        },
+        "load_order": [
+            "Case",
+            "Account"
+        ],
+        "batch_size": 1000
+    },
+    "schedule_config": {
+        "frequency": "Daily",
+        "run_time": "09:00:00",
+        "is_active": false
+    }
+}
